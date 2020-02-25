@@ -1,14 +1,23 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
 import styled from 'styled-components'
+import axios from 'axios'
 
 const Nav = ()=>{
+
+    const logout = () => {
+        axios.get('http://localhost:5000/api/auth/logout')
+            .then(res=>console.log(res))
+            .catch(err=>console.log(err));
+    }
+
     return (
         <NavBar>
             <Links to="/" exact={true}>Home</Links>
             <Links to="/login">Login</Links>
             <Links to="/signup">Signup</Links>
             <Links to="/users">Users</Links>
+            <Links onClick={logout} to="/">Logout</Links>
         </NavBar>
     )
 }
